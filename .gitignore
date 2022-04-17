@@ -1,0 +1,8 @@
+.DS_store
+benchmark/
+DB_fixed/
+LabeledDB_new/
+PyMesh/
+__pycache__/
+
+*.zip
