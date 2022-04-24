@@ -30,6 +30,7 @@ Although the database used only has 380 meshes, the system should also be able t
 As the goal of the system is to find meshes that are **visually** similar, it is not straightforward how to evaluate the performance. This is because the meshes are labeled with a class but the database does not contain ground-truth distance between the meshes. We can use the class labels and determine that if a cup is queried, then the results should ideally consist of cups only. It is not clear which cup should be the first result and which cup the second, for example. <br>
 When looking at the performance using the Precision metric (10 results), which computes how many of the 10 results have the same class as the queried mesh averaged over all meshes in one class, the results are the following: <br>
 <img src="Precision10_.png" width="300" alt="Home screen"/>
+<img src="Recall10_.png" width="300" alt="Home screen"/>
 <img src="rocSystems_2.png" height="676" alt="Home screen"/>
 
 
