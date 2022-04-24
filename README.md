@@ -35,7 +35,7 @@ Below are the ROC curves for the different system settings (selected weights, eq
 <img src="rocSystems_2.png" height="500" alt="Home screen"/> <br>
 As can be seen in the figure above, using KNN results in the lowest performance, but is significantly faster than the other two options. The time for the selected weights is constant because no matter if it returns the best result (1) or all (379) it will still need to compute the distance between the queried mesh and all 379 others. For KNN it only needs to look up which mesh is the closest, or which 379 meshes are, in terms of similarity and thus the time is not constant. <br>
 | Method           | 1 result   | 379 results |
-| ---------------- | ---------- | ----------- |
+| :--------------- | ---------: | ----------: |
 | KNN              | 40 ms      | 160 ms      |
 | Selected weights | 34154.92 ms| 34154.92 ms | <br>
 
