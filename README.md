@@ -23,17 +23,19 @@ These 6 simple features are combined with distribution features:
 ## Querying
 As there are 380 meshes in the database, finding the most similar meshes requires at least 379 comparisons and thus comparing two meshes has to be done quickly. To prevent repeating the same work, the features above are computed once and stored for when the system needs to compare meshes. For comparing two meshes the system computes a distance between them (the larger the distance, the less similar the meshes) based on the Euclidean distance for the simple features. For the distribution features the Earth mover's distance is used instead as this lends itself better for comparing distribution than the Euclidean distance does.  <br>
 Not all the features described above are equally useful and thus the features are weighted to maximize the performance of the system. The diameter and the bounding box volume, for example, have a small weight as they have a relatively high intra-class distance and relatively low inter-class distance. Meanwhile, the surface area is quite informative and thus has a larger weight.
-# K-nearest neighbors
+# K-nearest neighbors (KNN)
 Although the database used only has 380 meshes, the system should also be able to use different databases and these can contain many more meshes. Therefore, the system needs to be able to compare two meshes even quicker than just comparing the feature values. For this purpose the system can use K-nearest neighbors to find similar meshes. K-nearest neighbors reduced the number of comparisons that need to be made as it already knows the distances/similarities between the meshes in its database and thus it can use this information.
 
 ## Evaluation
 As the goal of the system is to find meshes that are **visually** similar, it is not straightforward how to evaluate the performance. This is because the meshes are labeled with a class but the database does not contain ground-truth distance between the meshes. We can use the class labels and determine that if a cup is queried, then the results should ideally consist of cups only. It is not clear which cup should be the first result and which cup the second, for example. <br>
 Below are the results using the Precision metric (10 results) and the Recall metric (10 results). Using chair as an example, the precision (for 10 results) is "number of chair meshes in results"/10 results, while the recall is "number of chair meshes in results"/"total number of chair meshes in dataset". IMPORTANT NOTE: Using 10 results means that the recall can only be 10/19 (approximately 0.526) in case the system would work perfectly. When increasing the number of results, the recall will go up but usually the precision will go down simultaneously, so in order to find a good balance between increasing recall and decreasing precision 10 was chosen. <br>
 <img src="Precision10_.png" width="300" alt="Home screen"/>
-<img src="Recall10_.png" width="300" alt="Home screen"/>
-Below is the ROC curve as well as the AUC (area under the curve) in the figure legend. The closer the curve gets to the upper right corner, the better the performance while randomly returning queries would give a linear line (blue line in figure).
-<img src="rocSystems_2.png" height="500" alt="Home screen"/>
-
-
-
+<img src="Recall10_.png" width="300" alt="Home screen"/> <br>
+Below are the ROC curves for the different system settings (selected weights, equal weights and KNN) and their corresponding AUC (area under the curve), which is present in the figure legend. The closer the curve gets to the upper right corner, the better the performance, while randomly returning queries would give a linear line (blue line in figure).
+<img src="rocSystems_2.png" height="500" alt="Home screen"/> <br>
+As can be seen in the figure above, using KNN results in the lowest performance, but is significantly faster than the other two options. The time for the selected weights is constant because no matter if it returns the best result (1) or all (379) it will still need to compute the distance between the queried mesh and all 379 others. For KNN it only needs to look up which mesh is the closest, or which 379 meshes are, in terms of similarity and thus the time is not constant. <br>
+| Method           | 1 result   | 379 results |
+| ---------------- | ---------- | ----------- |
+| KNN              | 40 ms      | 160 ms      |
+| Selected weights | 34154.92 ms| 34154.92 ms | <br>
 
