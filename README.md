@@ -28,10 +28,11 @@ Although the database used only has 380 meshes, the system should also be able t
 
 ## Evaluation
 As the goal of the system is to find meshes that are **visually** similar, it is not straightforward how to evaluate the performance. This is because the meshes are labeled with a class but the database does not contain ground-truth distance between the meshes. We can use the class labels and determine that if a cup is queried, then the results should ideally consist of cups only. It is not clear which cup should be the first result and which cup the second, for example. <br>
-When looking at the performance using the Precision metric (10 results), which computes how many of the 10 results have the same class as the queried mesh averaged over all meshes in one class, the results are the following: <br>
+Below are the results using the Precision metric (10 results) and the Recall metric (10 results). Using chair as an example, the precision (for 10 results) is "number of chair meshes in results"/10 results, while the recall is "number of chair meshes in results"/"total number of chair meshes in dataset". IMPORTANT NOTE: Using 10 results means that the recall can only be 10/19 (approximately 0.526) in case the system would work perfectly. When increasing the number of results, the recall will go up but usually the precision will go down simultaneously, so in order to find a good balance between increasing recall and decreasing precision 10 was chosen. <br>
 <img src="Precision10_.png" width="300" alt="Home screen"/>
 <img src="Recall10_.png" width="300" alt="Home screen"/>
-<img src="rocSystems_2.png" height="676" alt="Home screen"/>
+Below is the ROC curve as well as the AUC (area under the curve) in the figure legend. The closer the curve gets to the upper right corner, the better the performance while randomly returning queries would give a linear line (blue line in figure).
+<img src="rocSystems_2.png" height="500" alt="Home screen"/>
 
 
 
