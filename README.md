@@ -27,7 +27,8 @@ These 6 simple features are combined with distribution features:
 ## Querying
 As there are 380 meshes in the database, finding the most similar meshes requires at least 379 comparisons and thus comparing two meshes has to be done quickly. To prevent repeating the same work, the features above are computed once and stored for when the system needs to compare meshes. For comparing two meshes the system computes a distance between them (the larger the distance, the less similar the meshes) based on the Euclidean distance for the simple features. For the distribution features the Earth mover's distance is used instead as this lends itself better for comparing distribution than the Euclidean distance does.  <br>
 Not all the features described above are equally useful and thus the features are weighted to maximize the performance of the system. The diameter and the bounding box volume, for example, have a small weight as they have a relatively high intra-class distance and relatively low inter-class distance. Meanwhile, the surface area is quite informative and thus has a larger weight.
-# K-nearest neighbors (KNN)
+
+## K-nearest neighbors (KNN)
 Although the database used only has 380 meshes, the system should also be able to use different databases and these can contain many more meshes. Therefore, the system needs to be able to compare two meshes even quicker than just comparing the feature values. For this purpose the system can use K-nearest neighbors to find similar meshes. K-nearest neighbors reduced the number of comparisons that need to be made as it already knows the distances/similarities between the meshes in its database and thus it can use this information.
 
 ## Evaluation
