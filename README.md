@@ -3,7 +3,7 @@
 The practical part of the multimedia retrieval course consisted of creating a multimedia retrieval system. This system analyzes a 3D mesh and finds 3D meshes in its database that visually resemble the input mesh as much as possible (It is similar to a reverse image search on Google where an image is uploaded and Google finds images that are most similar. The difference is that this system uses 3D meshes instead of images). <br>
 Below are two examples of how the querying works as well as the respective (top 5) results for the queries:
 ![MR_Chair113_Short](https://user-images.githubusercontent.com/45210768/164991559-8873692b-8167-4484-adeb-c39bd7585e0b.gif)
-![MR_Fourleg400](https://user-images.githubusercontent.com/45210768/164991824-0a347975-ec50-4289-a1c3-01557bb9f28e.gif)
+![MR_Fourleg400](https://user-images.githubusercontent.com/45210768/164991824-0a347975-ec50-4289-a1c3-01557bb9f28e.gif) <br>
 The meshes are alligned such that the longest side is on the X-axis (see "Dependecies and preprocessing" section).
 
 ## Dependencies and preprocsessing
